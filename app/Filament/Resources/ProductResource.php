@@ -40,9 +40,9 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')->sortable(),
                 Tables\Columns\TextColumn::make('price')->money('BRL'),
-                Tables\Columns\TextColumn::make('amount'),
+                Tables\Columns\TextColumn::make('amount')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->date('d/m/Y H:i:s'),
             ])
             ->filters([
@@ -53,7 +53,8 @@ class ProductResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
