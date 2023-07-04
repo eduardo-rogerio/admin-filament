@@ -40,7 +40,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable(),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('price')->money('BRL'),
                 Tables\Columns\TextColumn::make('amount')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->date('d/m/Y H:i:s'),
