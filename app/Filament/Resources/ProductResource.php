@@ -10,6 +10,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class ProductResource extends Resource
@@ -46,7 +48,8 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->date('d/m/Y H:i:s'),
             ])
             ->filters([
-                //
+                Filter::make('amout')
+                    ->query(fn(Builder $builder) => $builder->where('amount','>',0)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
