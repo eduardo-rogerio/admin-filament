@@ -20,7 +20,7 @@ return new class extends Migration {
                 ->nullable();
             $table->integer('price')
                 ->nullable();
-            $table->integer('amout')
+            $table->integer('amount')
                 ->nullable();
             $table->timestamps();
         });
