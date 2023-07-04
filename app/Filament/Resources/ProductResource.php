@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -35,6 +36,7 @@ class ProductResource extends Resource
                 TextInput::make('price')->label('Preço Produto'),
                 TextInput::make('amount')->label('Quantidade Produto'),
                 TextInput::make('slug')->disabled(),
+                FileUpload::make('photo')->image()->directory('products')
             ]);
     }
 
@@ -42,6 +44,8 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('photo')->circular(),
+                Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('price')->money('BRL'),
                 Tables\Columns\TextColumn::make('amount')->sortable(),
