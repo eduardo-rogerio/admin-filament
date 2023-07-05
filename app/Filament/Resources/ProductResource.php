@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -36,7 +37,11 @@ class ProductResource extends Resource
                 TextInput::make('price')->label('Preço Produto'),
                 TextInput::make('amount')->label('Quantidade Produto'),
                 TextInput::make('slug')->disabled(),
-                FileUpload::make('photo')->image()->directory('products')
+                FileUpload::make('photo')->image()->directory('products'),
+                Select::make('category_id')
+                    ->relationship('categories','name')
+                    ->multiple()
+                    ->label('Categoria'),
             ]);
     }
 
