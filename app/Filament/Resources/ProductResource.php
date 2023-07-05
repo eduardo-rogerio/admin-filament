@@ -40,8 +40,7 @@ class ProductResource extends Resource
                 FileUpload::make('photo')->image()->directory('products'),
                 Select::make('category_id')
                     ->relationship('categories','name')
-                    ->multiple()
-                    ->label('Categoria'),
+                    ->multiple(),
             ]);
     }
 
