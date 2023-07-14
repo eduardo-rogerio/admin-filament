@@ -5,12 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Validation\Rules\Password;
 
 class UserResource extends Resource
 {
@@ -24,9 +26,13 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->required(),
-//                TextInput::make('password')->password(),
-//                TextInput::make('password_confirmation')->password()
-//                    ->same('password'),
+                TextInput::make('password')->password()
+                    ->required()
+                    ->rule(Password::default()),
+                TextInput::make('password_confirmation')->password()
+                    ->same('password')
+                    ->rule(Password::default()),
+            Select::make('role')->relationship('roles', 'name')->multiple(),
             ]);
     }
 
