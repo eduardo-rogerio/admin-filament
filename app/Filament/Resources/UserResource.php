@@ -24,9 +24,9 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->required(),
-                TextInput::make('password')->password(),
-                TextInput::make('password_confirmation')->password()
-                    ->same('password'),
+//                TextInput::make('password')->password(),
+//                TextInput::make('password_confirmation')->password()
+//                    ->same('password'),
             ]);
     }
 
