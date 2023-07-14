@@ -6,7 +6,6 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -38,9 +37,9 @@ class ProductResource extends Resource
                 TextInput::make('amount')->label('Quantidade Produto'),
                 TextInput::make('slug')->disabled(),
                 FileUpload::make('photo')->image()->directory('products'),
-                Select::make('category_id')
-                    ->relationship('categories','name')
-                    ->multiple(),
+//                Select::make('category_id')
+//                    ->relationship('categories','name')
+//                    ->multiple(),
             ]);
     }
 
@@ -71,7 +70,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CategoriesRelationManager::class
         ];
     }
 
