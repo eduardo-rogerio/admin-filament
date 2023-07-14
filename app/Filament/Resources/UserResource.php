@@ -34,7 +34,9 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable()->searchable(),
                 TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('created_at')->date('d/m/Y H:i')->sortable(),
             ])
             ->filters([
                 //
@@ -43,7 +45,7 @@ class UserResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                //Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
